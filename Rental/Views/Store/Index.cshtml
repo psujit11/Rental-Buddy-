@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Rental.Models.Product>
+@{
+    ViewData["Title"] = "Store";
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                    <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageUrl" width="100%" alt="@item.Name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Model: </b>@item.Skuid</p>
+                            <p class="card-text"><b>Owner: </b>@item.Owner</p>
+                            <p class="card-text"><b>ManuFacture Date </b>@item.ManufactureDate.ToString("dd MMM yy")</p>
+                            
+                          </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye-fill"></i> Show Details</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Rent (Price :Npr  @item.Price)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
